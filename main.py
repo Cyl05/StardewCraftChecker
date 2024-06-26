@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-import time
 import re
 recipes = {}
 items = {}
@@ -83,5 +82,3 @@ with open('items.txt', mode='w') as fp:
     for keys, values in items.items():
         fp.writelines(f"{keys} : {values}\n")
     print("All ingredients listed in 'items.txt' file in your current directory!")
-
-time.sleep(100)
