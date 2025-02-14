@@ -35,12 +35,11 @@ left_to_craft = filtered.find_all('a')
 
 # traversing through all the links in the list and extraction of the ingredients
 for item in left_to_craft:
-    url = driver.find_element(By.LINK_TEXT, item.text)
-    url.click()
+    driver.get(item['href'])
     title = driver.find_element(By.CLASS_NAME, 'firstHeading')
     greendivs = driver.find_elements(By.TAG_NAME, 'tr')
 
-    # iterates through all the <tr> elements until it finds thhe ingredients row
+    # iterates through all the <tr> elements until it finds the ingredients row
     for div in greendivs:
         soup = BeautifulSoup(div.get_attribute('innerHTML'), 'lxml')
         try:
@@ -63,7 +62,6 @@ for item in left_to_craft:
                 recipes[title.get_attribute('innerHTML')] = items_required
         except (AttributeError):
             continue
-    driver.back()
 
 """
 makes another dictionary called 'items' which gives the total quantity of each ingredient you need to craft all the remaining items
